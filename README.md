@@ -1,5 +1,5 @@
-# -Riesgo-Tecnol-gico-Practica-01
+#Practica-01
 
-Jonthan
-Jorge
-Marco
+#Jonthan
+#Jorge
+#Marco
