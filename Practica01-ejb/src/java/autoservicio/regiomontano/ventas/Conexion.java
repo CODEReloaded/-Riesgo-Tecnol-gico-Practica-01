@@ -33,5 +33,9 @@ public class Conexion {
             salida.add(new ObjetoBD(resultados.getInt("id")));
         }
         return salida.toArray(new ObjetoBD[0]);
-    }    
+    }
+    public static void main(String arg[]) throws SQLException, ClassNotFoundException{
+        Conexion ob=new Conexion();
+        System.out.println(ob.consultar());
+    }
 }
