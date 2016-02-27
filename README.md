@@ -1,7 +1,7 @@
 #Practica-01
 
-##Jonthan
+Jonthan
 
-##Jorge
+Jorge
 
-##Marco
+Marco
