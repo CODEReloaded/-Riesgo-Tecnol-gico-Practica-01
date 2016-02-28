@@ -5,7 +5,9 @@
  */
 package autoservicio.regiomontano.ventas;
 
+import java.io.IOException;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -16,7 +18,7 @@ public class Venta {
     private double total;
     private double neto;
     private double impuesto;
-
+    
     public double getTotal() {
         return total;
     }
@@ -41,6 +43,11 @@ public class Venta {
         this.impuesto = impuesto;
     }
     
-    
+    public void calcula(String cadena) throws IOException {
+        this.total=Double.parseDouble(cadena);
+        this.impuesto=total*.16;    
+        this.neto=total-impuesto;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    }
     
 }
