@@ -37,9 +37,4 @@ public class ObjetoBD {
     public void setValor(String valor) {
         this.valor = valor;
     }    
-    
-    public String toString(){
-        return "id: "+id+","+valor;
-    }
-            
 }
