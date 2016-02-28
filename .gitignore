@@ -1,2 +1,8 @@
 /build/
 /Practica01-war/dist/
+/nbproject/private/
+/Practica01-war/nbproject/private/
+/Practica01-ejb/nbproject/private/
+/Practica01-ejb/build/
+/Practica01-war/build/
+/Practica01-ejb/dist/

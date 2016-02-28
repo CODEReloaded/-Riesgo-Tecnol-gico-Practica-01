@@ -1,0 +1,41 @@
+@import "compass/css3";
+.login-box {
+  border: 1px solid #ddd; 
+  margin: 100px 0;
+  padding: 40px 20px 0 20px;
+}
+
+/*
+ * CSS para los formularios
+ */
+.button-submit {
+  border-radius: 7px;
+  font-size: 1em;
+  box-shadow:0 2px 2px 0 rgba(0,0,0,0.2),0 2px 2px 0 rgba(0,0,0,0.19);
+}
+.forms {
+  border: 2px solid rgba(0,0,0,0.2);
+  box-shadow:0 1px 1px 0 rgba(0,0,0,0.2),0 1px 1px 0 rgba(0,0,0,0.19);
+  padding: 2rem 2rem;
+  border-radius: 8px;
+  background-color: rgba(215,235,245,0.8);
+}
+.input-form {
+  border-radius: 5px;
+}
+.form-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
+.form-links {
+  margin-top: 2rem;
+  border-top: 1px solid black;
+  padding-top: 10px;
+}
+.right-links {
+  font-size: .8em;
+}
