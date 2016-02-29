@@ -17,6 +17,9 @@
         <link rel="stylesheet" href="css/app.css" />
     </head>
     <body>
+        <div>
+            <h1>Sistema de ventas</h1>
+        </div>
         <div class="row large-up-3 medium-up-2 columns large-5 medium-7 small-12">
             <div class="forms">
                 <div class="form-title">
@@ -28,13 +31,13 @@
                             <h:outputLabel value="Capturista:" styleClass="text-right middle" id="capturistaLabel" for="valor-capturista"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
-                            <h:inputText id="valor-capturista" binding="#{name}" styleClass="input-form" required="required"/>
+                            <h:inputText id="valor-capturista" binding="#{name}" styleClass="input-form" required="required"/>                            
                         </div>
                     </div>
                     Fecha:
-                    <h:inputText id="valorfecha" binding="#{date}"/><br/>
+                    <h:inputText id="valorfecha" binding="#{date}" value="dd/mm/aaaa"/><br/>
                     Venta Total:
-                    <h:inputText id="valor-cadena" binding="#{cadena}"/><br/>
+                    <h:inputText id="valor-cadena" binding="#{cadena}" value="0000"/><br/>
                     <div class="row">
                         <div class="small-offset-1 medium-offset-1 large-offset-2 small-10 medium-10 large-9 column">
                             <div class="expanded input-group-button">
@@ -46,50 +49,8 @@
             </div>
         </div>
         <hr/> 
-        <p>Total:#{venta.total}</p><br/>
-        <p>Impuestos:#{venta.impuesto}</p><br/>
-        <p>Neto:#{venta.neto}</p><br/>
-        <br/>
-        <br/>
-        <div class="row large-up-3 medium-up-2 columns large-5 medium-7 small-12">
-            <div class="forms">
-                <div class="form-title">
-                    Inicia Sesión
-                </div>
-                <form name="login-form" action="/login" method="post">
-                    <div class="row">
-                        <div class="small-3 medium-3 large-3 column">
-                            <label for="email" class="text-right middle">Correo</label>
-                        </div>
-                        <div class="small-9 medium-9 large-9 column">
-                            <input class="input-form" type="email" name="email" value="" id="email" placeholder="" required="required" autofocus="autofocus"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-3 medium-3 large-3 column">
-                            <label for="password" class="text-right middle">Contraseña</label>
-                        </div>
-                        <div class="small-9 medium-9 large-9 column">
-                            <input class="input-form" type="password" name="password" id="middle-label" required="required"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-offset-1 medium-offset-1 large-offset-2 small-10 medium-10 large-9 column">
-                            <div class="expanded input-group-button">
-                                <input type="submit" class="button expanded button-submit" value="Ingresar"/>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="form-links">
-                    <div class="right-links small-12 medium-6 large-7">
-                        No tienes cuenta <a href="/sign_up">Registrate</a><br/>
-                            Olvidaste tu contraseña? <a href="#">Recuperar</a>
-                    </div>
-                    <div class="left-links small-12 medium-6 large-5">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <p>Total:#{venta.total}</p>
+        <p>Impuestos:#{venta.impuesto}</p>
+        <p>Neto:#{venta.neto}</p>
     </body>
 </html>
