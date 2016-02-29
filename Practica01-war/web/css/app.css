@@ -4,7 +4,14 @@
   margin: 100px 0;
   padding: 40px 20px 0 20px;
 }
-
+.name-page{
+    text-align: center;
+    font-size: 2.3em;
+    font-weight: 600;
+}
+.top-bar{
+    margin-bottom: 40px;
+}
 /*
  * CSS para los formularios
  */
