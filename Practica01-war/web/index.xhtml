@@ -34,23 +34,37 @@
                             <h:inputText id="valor-capturista" binding="#{name}" styleClass="input-form" required="required"/>                            
                         </div>
                     </div>
-                    Fecha:
-                    <h:inputText id="valorfecha" binding="#{date}" value="dd/mm/aaaa"/><br/>
-                    Venta Total:
-                    <h:inputText id="valor-cadena" binding="#{cadena}" value="0000"/><br/>
                     <div class="row">
-                        <div class="small-offset-1 medium-offset-1 large-offset-2 small-10 medium-10 large-9 column">
+                        <div class="small-3 medium-3 large-3 column">
+                            <h:outputLabel value="Fecha:" styleClass="text-right middle" id="fechaLabel" for="valorfecha"/>
+                        </div>
+                        <div class="small-9 medium-9 large-9 column">
+                            <h:inputText id="valorfecha" binding="#{date}" value="dd/mm/aaaa" styleClass="input-form" required="required"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 medium-3 large-3 column">
+                            <h:outputLabel value="Venta Total:" styleClass="text-right middle" id="cadenaLabel" for="valor-cadena"/>
+                        </div>
+                        <div class="small-9 medium-9 large-9 column">
+                            <h:inputText id="valor-cadena" binding="#{cadena}" value="0000" styleClass="input-form" required="required"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-offset-1 medium-offset-1 large-offset-1 small-10 medium-10 large-10 column">
                             <div class="expanded input-group-button">
-                                <h:commandButton id="solicitar" value="Calcular" action="#{venta.calcula(cadena.value)}"  styleClass="button expanded button-submit"/>
+                                <h:commandButton id="solicitar" value="Guardar" action="#{venta.calcula(cadena.value)}"  styleClass="button expanded button-submit"/>
                             </div>
                         </div>
                     </div>
                 </h:form>
             </div>
         </div>
+        
         <hr/> 
         <p>Total:#{venta.total}</p>
         <p>Impuestos:#{venta.impuesto}</p>
         <p>Neto:#{venta.neto}</p>
+        <script src="js/foundation.js" />
     </body>
 </html>
