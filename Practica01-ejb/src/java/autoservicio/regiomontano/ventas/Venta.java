@@ -8,6 +8,8 @@ package autoservicio.regiomontano.ventas;
 import java.io.IOException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -15,9 +17,13 @@ import javax.faces.context.FacesContext;
  */
 @ApplicationScoped
 public class Venta {
-    private double total;
+    @NotNull
+    @Digits(integer=6,fraction=2)
+    private double total;        
     private double neto;
+    
     private double impuesto;
+    private Conexion c = new Conexion();
     
     public double getTotal() {
         return total;
@@ -43,11 +49,15 @@ public class Venta {
         this.impuesto = impuesto;
     }
     
-    public void calcula(String cadena) throws IOException {
-        this.total=Double.parseDouble(cadena);
-        this.impuesto=total*.16;    
-        this.neto=total-impuesto;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    public void calcula(String cadena) throws IOException{                     
+        try {
+            this.total=Double.parseDouble(cadena);
+            this.impuesto=total*.16;    
+            this.neto=total-impuesto;
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   
+        }catch (java.lang.NumberFormatException e) {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   
+        }        
     }
     
 }
