@@ -49,7 +49,10 @@
                             <h:outputLabel value="Venta Total:" styleClass="text-right middle" id="cadenaLabel" for="valor-cadena"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
-                            <h:inputText id="valor-cadena" binding="#{cadena}" value="0000" styleClass="input-form" required="required"/>
+                            <h:inputText id="valor-cadena" binding="#{cadena}" value="0000" styleClass="input-form" required="true">
+                                <f:validateLength minimum="2" maximum="10"/>
+                            </h:inputText>
+                            <h:message for="valor-cadena" style="color:red"/>
                         </div>
                     </div>
                     <div class="row">
@@ -88,6 +91,7 @@
                 <td >#{resultado.valor}</td>
             </tr>
         </ui:repeat>
+        
         <script>
             $(document).ready(function(){ 
                 $('#alternar-respuesta-ej1').on('click',function(){
