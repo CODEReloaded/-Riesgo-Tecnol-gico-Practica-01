@@ -59,10 +59,18 @@
                             </div>
                         </div>
                     </div>
-                    <p><a href="#" id="alternar-respuesta-ej1">Opciones avanzadas</a></p> 
-                    <div id="respuesta-ej1" style="display:none">
-                        <p>Impuestos:#{venta.impuesto}</p>
-                        <p>Neto:#{venta.neto}</p>
+                    <div class="row">
+                        <div class="form-links">
+                            <a href="#" id="alternar-respuesta-ej1">Opciones avanzadas</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="error" style="display:none">
+                        </div>
+                        <div id="respuesta-ej1" style="display:none">
+                            <p>Impuestos: <div id="impuestos"></div></p>
+                            <p>Neto: <div id="neto"></div></p>
+                        </div>
                     </div>
                 </h:form>
             </div>
@@ -71,7 +79,13 @@
         <script>
             $(document).ready(function(){ 
                 $('#alternar-respuesta-ej1').on('click',function(){
-                $('#respuesta-ej1').toggle();
+                    $('#respuesta-ej1').toggle();
+                    event.preventDefault();
+                });
+                $('input:eq(3)').change(function(){
+                    var valor = $('input:eq(3)').val();
+                    $('#impuestos').text(valor*0.16);
+                    $('#neto').text(valor - valor*0.16);
                 });
             });
         </script>
