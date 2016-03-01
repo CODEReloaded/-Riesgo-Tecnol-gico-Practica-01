@@ -59,8 +59,9 @@
                             </div>
                         </div>
                     </div>
-                    <p><a href="#" id="alternar-respuesta-ej1">Opciones avanzadas</a></p> 
-                    <div id="respuesta-ej1" style="display:none">
+                    <p><a href="#" id="opciones">Opciones avanzadas</a></p> 
+                    <div id="respuesta" style="display:none">
+                        <p>Total:#{venta.total}</p>
                         <p>Impuestos:#{venta.impuesto}</p>
                         <p>Neto:#{venta.neto}</p>
                     </div>
@@ -70,8 +71,8 @@
         <hr/>                                     
         <script>
             $(document).ready(function(){ 
-                $('#alternar-respuesta-ej1').on('click',function(){
-                $('#respuesta-ej1').toggle();
+                $('#opciones').on('click',function(){
+                $('#respuesta').toggle();
                 });
             });
         </script>
