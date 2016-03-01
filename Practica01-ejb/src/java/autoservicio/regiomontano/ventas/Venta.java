@@ -6,6 +6,7 @@
 package autoservicio.regiomontano.ventas;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Digits;
@@ -20,8 +21,7 @@ public class Venta {
     @NotNull
     @Digits(integer=6,fraction=2)
     private double total;        
-    private double neto;
-    
+    private double neto;    
     private double impuesto;
     private Conexion c = new Conexion();
     
@@ -49,13 +49,22 @@ public class Venta {
         this.impuesto = impuesto;
     }
     
-    public void calcula(String cadena) throws IOException{                     
+    public String[] separaNombre(String nombre){        
+        String delimitadores= "[ ]+";
+        String[] palabraSeparada = nombre.split(delimitadores);
+        return palabraSeparada;
+    }
+    
+    public void calcula(String name,String bruto, String date) throws IOException, SQLException, ClassNotFoundException{
         try {
-            this.total=Double.parseDouble(cadena);
+            Conexion c = new Conexion();
+            c.guardar(name,bruto,date);
+            separaNombre(name);
+            this.total=Double.parseDouble(bruto);
             this.impuesto=total*.16;    
             this.neto=total-impuesto;
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   
-        }catch (java.lang.NumberFormatException e) {
+        }catch (java.lang.NumberFormatException e) {            
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   
         }        
     }

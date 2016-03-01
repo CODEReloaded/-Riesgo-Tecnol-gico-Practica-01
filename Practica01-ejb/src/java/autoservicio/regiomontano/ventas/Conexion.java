@@ -21,18 +21,29 @@ import javax.enterprise.context.ApplicationScoped;
 public class Conexion {
     public Conexion(){}
     
+    public String capturista(String name){
+        name = "INSERT INTO capturista(nombres,apellido_p,apellido_m) VALUES('JONATHAN', 'ABREGO', 'ALVAREZ');";
+        return name;
+    }
+    
+    public String venta(String bruto){
+        bruto = "INSERT INTO venta(total,neto,impuestos) VALUES(1000,840,160);";
+        return bruto;        
+    }
+    
+    public String fecha(String date){
+        date="INSERT INTO captura(fecha) VALUES('01/10/1999');";//1999/10/01
+        return date;
+    }
 
-    public ObjetoBD[] consultar() throws SQLException, ClassNotFoundException {
+    public void guardar(String name, String bruto, String date) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         Connection con = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/autoservicio", "postgres", "postgres");
         Statement stmt = con.createStatement();
-        String query = "SELECT * FROM capturista;";
-        ResultSet resultados = stmt.executeQuery(query);
-        LinkedList<ObjetoBD> salida = new LinkedList<>();
-        while (resultados.next()) {
-            salida.add(new ObjetoBD(resultados.getInt("id"),resultados.getString("nombres")));
-        }
-        return salida.toArray(new ObjetoBD[0]);
-    }
+        String query=capturista(name);
+        query+=venta(bruto);
+        query+=fecha(date);        
+        stmt.execute(query);        
+    }    
 }

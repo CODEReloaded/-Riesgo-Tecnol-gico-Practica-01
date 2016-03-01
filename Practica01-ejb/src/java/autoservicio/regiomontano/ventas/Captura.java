@@ -6,6 +6,8 @@
 package autoservicio.regiomontano.ventas;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Future;
 
 /**
  *
@@ -13,6 +15,7 @@ import javax.enterprise.context.ApplicationScoped;
  */
 @ApplicationScoped
 public class Captura {
+    @NotNull        
     private String fecha;
 
     public String getFecha() {
