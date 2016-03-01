@@ -27,5 +27,5 @@
         <managed-bean-name>captura</managed-bean-name>
         <managed-bean-class>autoservicio.regiomontano.ventas.Captura</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>        
-    </managed-bean>     
+    </managed-bean>         
 </faces-config>

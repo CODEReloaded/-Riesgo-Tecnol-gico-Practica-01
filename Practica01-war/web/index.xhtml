@@ -74,8 +74,14 @@
                     </div>
                 </h:form>
             </div>
-        </div>
-        <hr/>                                     
+        </div>        
+        <hr/> 
+        <ui:repeat value="#{conexion.consultar()}" var="resultado" >
+            <tr >
+                <td >#{resultado.id}</td>
+                <td >#{resultado.valor}</td>
+            </tr>
+        </ui:repeat>
         <script>
             $(document).ready(function(){ 
                 $('#alternar-respuesta-ej1').on('click',function(){
