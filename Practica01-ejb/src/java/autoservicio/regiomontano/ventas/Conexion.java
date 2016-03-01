@@ -20,6 +20,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class Conexion {
     public Conexion(){}
+    
 
     public ObjetoBD[] consultar() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
@@ -30,12 +31,8 @@ public class Conexion {
         ResultSet resultados = stmt.executeQuery(query);
         LinkedList<ObjetoBD> salida = new LinkedList<>();
         while (resultados.next()) {
-            salida.add(new ObjetoBD(resultados.getInt("id")));
+            salida.add(new ObjetoBD(resultados.getInt("id"),resultados.getString("nombres")));
         }
         return salida.toArray(new ObjetoBD[0]);
     }
-//    public static void main(String arg[]) throws SQLException, ClassNotFoundException{
-//        Conexion ob=new Conexion();
-//        System.out.println(ob.consultar());
-//    }
 }
