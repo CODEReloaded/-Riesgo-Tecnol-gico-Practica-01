@@ -7,5 +7,5 @@
         <managed-bean-name>venta</managed-bean-name>
         <managed-bean-class>autoservicio.regiomontano.ventas.Venta</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>        
-    </managed-bean>
+    </managed-bean>    
 </faces-config>
