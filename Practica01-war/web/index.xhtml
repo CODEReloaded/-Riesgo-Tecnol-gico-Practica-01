@@ -33,7 +33,10 @@
                             <h:outputLabel value="Nombre:" styleClass="text-right middle" id="capturistaLabel" for="valor-capturista"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
-                            <h:inputText id="valor-capturista" binding="#{name}" styleClass="input-form" required="required"/> 
+                            <h:inputText id="valor-capturista" binding="#{name}" styleClass="input-form" required="required"> 
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message for="valor-capturista" style="color:red"/>                            
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +44,10 @@
                             <h:outputLabel value="Apellido Paterno:" styleClass="text-right middle" id="apellido_pLabel" for="apellido_p"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
-                            <h:inputText id="apellido_p" binding="#{apellidop}" styleClass="input-form" required="required"/> 
+                            <h:inputText id="apellido_p" binding="#{apellidop}" styleClass="input-form" required="required"> 
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message for="apellido_p" style="color:red"/>                            
                         </div>
                     </div>
                     <div class="row">
@@ -49,7 +55,10 @@
                             <h:outputLabel value="Apellido Materno:" styleClass="text-right middle" id="apellido_mLabel" for="apellido_m"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
-                            <h:inputText id="apellido_m" binding="#{apellidom}" styleClass="input-form" required="required"/> 
+                            <h:inputText id="apellido_m" binding="#{apellidom}" styleClass="input-form" required="required"> 
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message for="apellido_m" style="color:red"/>                            
                         </div>
                     </div>
                     <div class="row">
@@ -57,7 +66,10 @@
                             <h:outputLabel value="Fecha:" styleClass="text-right middle" id="fechaLabel" for="valorfecha"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
-                            <h:inputText id="valorfecha" binding="#{date}" styleClass="input-form" required="true"/>
+                            <h:inputText id="valorfecha" binding="#{date}" styleClass="input-form" required="true">
+
+                            </h:inputText>
+                            <h:message for="valorfecha" style="color:red"/>                            
                         </div>
                     </div>
                     <div class="row">
@@ -65,7 +77,7 @@
                             <h:outputLabel value="Venta Total:" styleClass="text-right middle" id="cadenaLabel" for="valor-bruto"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
-                            <h:inputText id="valor-cadena" binding="#{bruto}" styleClass="input-form" required="true">
+                            <h:inputText id="valor-bruto" binding="#{bruto}" styleClass="input-form" required="true">
                                 <f:validateDoubleRange minimum="0.01"/>
                             </h:inputText>
                             <h:message for="valor-bruto" style="color:red"/>                            
@@ -74,7 +86,7 @@
                     <div class="row">
                         <div class="small-offset-1 medium-offset-1 large-offset-1 small-10 medium-10 large-10 column">
                             <div class="expanded input-group-button">
-                                <h:commandButton id="solicitar" value="Guardar" action="#{venta.calcula(name.value,apellidop.value,apellidom.value,date.value,total.value)}"  styleClass="button expanded button-submit"/>
+                                <h:commandButton id="solicitar" value="Guardar" action="#{venta.calcula(bruto.value, date.value,name.value,apellidop.value,apellidom.value)}"  styleClass="button expanded button-submit"/>
                             </div>
                         </div>
                     </div>
@@ -107,17 +119,17 @@
                 <td >#{resultado.valor}</td>
             </tr>
         </ui:repeat>
-        
+
         <script>
-            $(document).ready(function(){ 
-                $('#alternar-respuesta-ej1').on('click',function(){
+            $(document).ready(function () {
+                $('#alternar-respuesta-ej1').on('click', function () {
                     $('#respuesta-ej1').toggle();
                     event.preventDefault();
                 });
-                $('input:eq(5)').change(function(){
+                $('input:eq(5)').change(function () {
                     var valor = $('input:eq(5)').val();
-                    $('#impuestos').text(valor*0.16);
-                    $('#neto').text(valor - valor*0.16);
+                    $('#impuestos').text(valor * 0.16);
+                    $('#neto').text(valor - valor * 0.16);
                 });
             });
         </script>

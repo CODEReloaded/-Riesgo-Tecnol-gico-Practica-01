@@ -49,15 +49,15 @@ public class Conexion {
         return null;
     }
     
-    public int actualizar(String sql){
+    public boolean actualizar(String sql){
         try {
             this.stmt = this.con.createStatement();
-            return this.stmt.executeUpdate(sql);
+            return this.stmt.execute(sql);
         } catch (SQLException ex) {
             System.out.println("no se guardo");
             System.out.println(ex.getMessage());
             desconectar();
-            return -1;
+            return false;
         }
     }
     
@@ -76,32 +76,12 @@ public class Conexion {
             System.out.println(ex.getMessage());
         }
     }
-    
-    public String capturista(String name){
-        name = "INSERT INTO capturista(nombres,apellido_p,apellido_m) VALUES('JONATHAN', 'ABREGO', 'ALVAREZ');";
-        return name;
-    }
-    
-    public String venta(String bruto){
-        bruto = "INSERT INTO venta(total,neto,impuestos) VALUES(1000,840,160);";
-        return bruto;        
-    }
-    
-    public String fecha(String date){
-        date="INSERT INTO captura(fecha) VALUES('01/10/1999');";//1999/10/01
-        return date;
-    }
-
-    public void guardar(String name, String bruto, String date) throws SQLException, ClassNotFoundException {
+        
+    public void guardar(String query) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         Connection con = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/autoservicio", "postgres", "postgres");
-        Statement stmt = con.createStatement();
-        String query=capturista(name);
-        query+=venta(bruto);
-        query+=fecha(date);        
-        stmt.execute(query);
-        stmt.close();
-        con.close();
+        Statement stmt = con.createStatement();        
+        stmt.execute(query);       
     }    
 }

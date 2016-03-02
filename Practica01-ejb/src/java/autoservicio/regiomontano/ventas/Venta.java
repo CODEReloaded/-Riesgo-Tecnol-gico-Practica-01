@@ -6,11 +6,13 @@
 package autoservicio.regiomontano.ventas;
 
 import java.io.IOException;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+
 
 /**
  *
@@ -46,26 +48,21 @@ public class Venta {
 
     public void setImpuesto(double impuesto) {
         this.impuesto = impuesto;
-    }
+    }    
     
-    public String[] separaNombre(String nombre){        
-        String delimitadores= "[ ]+";
-        String[] palabraSeparada = nombre.split(delimitadores);
-        return palabraSeparada;
-    }
-    
-    public void calcula(String name, String apellidop, String apellidom, String bruto, String date) throws IOException, SQLException, ClassNotFoundException{
+    public void calcula(String bruto,String date,String name, String apellidop,String apellidom) throws IOException, SQLException, ClassNotFoundException{
         try {
-            this.total=Double.parseDouble(bruto);
-            this.impuesto=total*.16;
-            this.neto=total-impuesto;
-            Conexion c = new Conexion();
-            int r = c.actualizar("INSERT INTO venta(total,neto,impuestos) VALUES("+this.total+","+this.neto+","+this.impuesto+");");
-            System.out.println(r == 1);
-            c.actualizar("INSERT INTO capturista(nombres,apellido_p,apellido_m) VALUES('"+
-                name+"', '"+apellidop+"', '"+apellidom+"');");            
-            c.actualizar("INSERT INTO captura(fecha) VALUES('"+date+"');");
-            c.desconectar();
+            //Capturista cap=new Capturista(name,apellidop,apellidom);
+            total=Double.parseDouble(bruto);
+            impuesto=total*.16;
+            neto=total-impuesto;
+            Conexion c = new Conexion();            
+            String query = "INSERT INTO capturista(nombres,apellido_p,apellido_m) VALUES('"+name+"','"+apellidop+"','"+apellidom+"');";
+            String query1="INSERT INTO venta(total,neto,impuestos) VALUES("+total+","+neto+","+impuesto+");";
+            String query2="INSERT INTO captura(fecha) VALUES('"+date+"');";            
+            c.guardar(query);
+            c.guardar(query1);
+            c.guardar(query2);
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   
         }catch (java.lang.NumberFormatException e) {            
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   

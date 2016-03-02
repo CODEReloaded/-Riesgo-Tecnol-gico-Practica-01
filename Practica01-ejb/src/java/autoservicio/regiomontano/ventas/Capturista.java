@@ -20,6 +20,12 @@ public class Capturista {
     private String apaterno;
     @NotNull
     private String amaterno;
+
+    public Capturista(String nombres, String apaterno, String amaterno) {
+        this.nombres = nombres;
+        this.apaterno = apaterno;
+        this.amaterno = amaterno;
+    }       
     
     public String getNombres() {
         return nombres;
