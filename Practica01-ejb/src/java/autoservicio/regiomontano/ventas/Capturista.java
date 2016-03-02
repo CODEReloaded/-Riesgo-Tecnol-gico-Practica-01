@@ -15,15 +15,33 @@ import javax.validation.constraints.NotNull;
 @ApplicationScoped
 public class Capturista {
     @NotNull
-    private String nombre;
-
-    public String getNombre() {
-        return nombre;
+    private String nombres;
+    @NotNull
+    private String apaterno;
+    @NotNull
+    private String amaterno;
+    
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
     
+    public String getApaterno() {
+        return apaterno;
+    }
+
+    public void setApaterno(String apaterno) {
+        this.apaterno = apaterno;
+    }
     
+    public String getAmaterno() {
+        return amaterno;
+    }
+
+    public void setAmaterno(String amaterno) {
+        this.amaterno = amaterno;
+    }
 }

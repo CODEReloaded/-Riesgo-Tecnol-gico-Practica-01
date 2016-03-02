@@ -30,10 +30,26 @@
                 <h:form >
                     <div class="row">
                         <div class="small-3 medium-3 large-3 column">
-                            <h:outputLabel value="Capturista:" styleClass="text-right middle" id="capturistaLabel" for="valor-capturista"/>
+                            <h:outputLabel value="Nombre:" styleClass="text-right middle" id="capturistaLabel" for="valor-capturista"/>
                         </div>
                         <div class="small-9 medium-9 large-9 column">
                             <h:inputText id="valor-capturista" binding="#{name}" styleClass="input-form" required="required"/> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 medium-3 large-3 column">
+                            <h:outputLabel value="Apellido Paterno:" styleClass="text-right middle" id="apellido_pLabel" for="apellido_p"/>
+                        </div>
+                        <div class="small-9 medium-9 large-9 column">
+                            <h:inputText id="apellido_p" binding="#{apellidop}" styleClass="input-form" required="required"/> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 medium-3 large-3 column">
+                            <h:outputLabel value="Apellido Materno:" styleClass="text-right middle" id="apellido_mLabel" for="apellido_m"/>
+                        </div>
+                        <div class="small-9 medium-9 large-9 column">
+                            <h:inputText id="apellido_m" binding="#{apellidom}" styleClass="input-form" required="required"/> 
                         </div>
                     </div>
                     <div class="row">
@@ -58,7 +74,7 @@
                     <div class="row">
                         <div class="small-offset-1 medium-offset-1 large-offset-1 small-10 medium-10 large-10 column">
                             <div class="expanded input-group-button">
-                                <h:commandButton id="solicitar" value="Guardar" action="#{venta.calcula(name.value,date.value,total.value)}"  styleClass="button expanded button-submit"/>
+                                <h:commandButton id="solicitar" value="Guardar" action="#{venta.calcula(name.value,apellidop.value,apellidom.value,date.value,total.value)}"  styleClass="button expanded button-submit"/>
                             </div>
                         </div>
                     </div>
@@ -98,8 +114,8 @@
                     $('#respuesta-ej1').toggle();
                     event.preventDefault();
                 });
-                $('input:eq(3)').change(function(){
-                    var valor = $('input:eq(3)').val();
+                $('input:eq(5)').change(function(){
+                    var valor = $('input:eq(5)').val();
                     $('#impuestos').text(valor*0.16);
                     $('#neto').text(valor - valor*0.16);
                 });

@@ -23,7 +23,6 @@ public class Venta {
     private double total;        
     private double neto;    
     private double impuesto;
-    private Conexion c = new Conexion();
     
     public double getTotal() {
         return total;
@@ -55,14 +54,18 @@ public class Venta {
         return palabraSeparada;
     }
     
-    public void calcula(String name,String bruto, String date) throws IOException, SQLException, ClassNotFoundException{
+    public void calcula(String name, String apellidop, String apellidom, String bruto, String date) throws IOException, SQLException, ClassNotFoundException{
         try {
-            Conexion c = new Conexion();
-            c.guardar(name,bruto,date);
-            separaNombre(name);
             this.total=Double.parseDouble(bruto);
-            this.impuesto=total*.16;    
+            this.impuesto=total*.16;
             this.neto=total-impuesto;
+            Conexion c = new Conexion();
+            int r = c.actualizar("INSERT INTO venta(total,neto,impuestos) VALUES("+this.total+","+this.neto+","+this.impuesto+");");
+            System.out.println(r == 1);
+            c.actualizar("INSERT INTO capturista(nombres,apellido_p,apellido_m) VALUES('"+
+                name+"', '"+apellidop+"', '"+apellidom+"');");            
+            c.actualizar("INSERT INTO captura(fecha) VALUES('"+date+"');");
+            c.desconectar();
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   
         }catch (java.lang.NumberFormatException e) {            
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   

@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -19,7 +21,61 @@ import javax.enterprise.context.ApplicationScoped;
  */
 @ApplicationScoped
 public class Conexion {
-    public Conexion(){}
+    
+    private Statement stmt;
+    Connection con;
+    
+    public Conexion(){
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("no se puede iniciar");
+        }
+        try {
+            this.con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/autoservicio", "postgres", "postgres");
+        } catch (SQLException ex) {
+            System.out.println("no se conecto");
+        }        
+    }
+    
+    public ResultSet consultar(String sql){
+        try{
+            this.stmt = this.con.createStatement();
+            ResultSet rs = this.stmt.executeQuery(sql);
+            if(rs.next()){ return rs;}
+        } catch(SQLException e){
+            return null;
+        }
+        return null;
+    }
+    
+    public int actualizar(String sql){
+        try {
+            this.stmt = this.con.createStatement();
+            return this.stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            System.out.println("no se guardo");
+            System.out.println(ex.getMessage());
+            desconectar();
+            return -1;
+        }
+    }
+    
+    /**
+     * Desconecta al sistema de la base de datos. 
+     */
+    public void desconectar() {
+        try {
+            this.stmt.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        try {
+            this.con.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
     public String capturista(String name){
         name = "INSERT INTO capturista(nombres,apellido_p,apellido_m) VALUES('JONATHAN', 'ABREGO', 'ALVAREZ');";
@@ -44,6 +100,8 @@ public class Conexion {
         String query=capturista(name);
         query+=venta(bruto);
         query+=fecha(date);        
-        stmt.execute(query);        
+        stmt.execute(query);
+        stmt.close();
+        con.close();
     }    
 }

@@ -24,5 +24,5 @@ public class Captura {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
-    }    
+    }
 }
