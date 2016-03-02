@@ -7,7 +7,9 @@ package autoservicio.regiomontano.ventas;
 
 import java.io.IOException;
 import static java.lang.System.out;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Digits;
@@ -68,5 +70,16 @@ public class Venta {
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");   
         }        
     }
+    
+    public Pinta[] graficador() throws SQLException{
+        Conexion c = new Conexion();
+        ResultSet rs =  c.consultar("select fecha, sum(total), sum(neto) from captura join venta on (id = id_venta) group by fecha;");
+        LinkedList<Pinta> salida = new LinkedList<>();
+        while(rs.next()){
+            salida.add(new Pinta(rs.getString(0), rs.getDouble(1), rs.getDouble(2)));
+        }
+        return salida.toArray(new Pinta[0]);
+    }
+    
     
 }
