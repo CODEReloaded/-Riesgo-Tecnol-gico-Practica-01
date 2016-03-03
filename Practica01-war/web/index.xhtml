@@ -67,7 +67,7 @@
                         </div>
                         <div class="small-9 medium-9 large-9 column">
                             <h:inputText id="valorfecha" binding="#{date}" styleClass="input-form" required="true">
-
+                                <f:convertDateTime for="valorfecha"/>
                             </h:inputText>
                             <h:message for="valorfecha" style="color:red"/>
                         </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="small-9 medium-9 large-9 column">
                             <h:inputText id="valor-bruto" binding="#{bruto}" styleClass="input-form" required="true">
-                                <f:validateDoubleRange minimum="0.01"/>
+                                <f:validateDoubleRange minimum="0.00"/>
                             </h:inputText>
                             <h:message for="valor-bruto" style="color:red"/>                            
                         </div>
