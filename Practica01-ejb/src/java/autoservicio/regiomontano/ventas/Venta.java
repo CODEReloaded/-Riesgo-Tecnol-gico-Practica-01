@@ -82,7 +82,6 @@ public class Venta {
         ResultSet rs = stmt.executeQuery("select TO_CHAR(fecha, 'dd Mon YYYY'), sum(total), sum(neto) from captura join venta on (id = id_venta) group by fecha order by fecha asc;");
         LinkedList<Pinta> salida = new LinkedList<>();
         while(rs.next()){
-            System.out.println("Uno");
             salida.add(new Pinta(rs.getString(1), rs.getDouble(2), rs.getDouble(3)));
         }
         return salida.toArray(new Pinta[0]);

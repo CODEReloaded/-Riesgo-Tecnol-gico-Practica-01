@@ -83,5 +83,5 @@ public class Conexion {
                 "jdbc:postgresql://localhost:5432/autoservicio", "postgres", "postgres");
         Statement stmt = con.createStatement();        
         stmt.execute(query);       
-    }    
+    }        
 }
