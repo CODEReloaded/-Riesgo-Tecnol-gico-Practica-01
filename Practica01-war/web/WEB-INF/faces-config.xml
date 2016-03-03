@@ -9,18 +9,8 @@
         <managed-bean-scope>application</managed-bean-scope>        
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>capturista</managed-bean-name>
-        <managed-bean-class>autoservicio.regiomontano.ventas.Capturista</managed-bean-class>
+        <managed-bean-name>conexion</managed-bean-name>
+        <managed-bean-class>autoservicio.regiomontano.ventas.Conexion</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>        
     </managed-bean>
-    <managed-bean>
-        <managed-bean-name>captura</managed-bean-name>
-        <managed-bean-class>autoservicio.regiomontano.ventas.Captura</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>        
-    </managed-bean>    
-    <managed-bean>
-        <managed-bean-name>captura</managed-bean-name>
-        <managed-bean-class>autoservicio.regiomontano.ventas.Captura</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>        
-    </managed-bean>         
 </faces-config>

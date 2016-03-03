@@ -11,6 +11,12 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
+          var datos = document.getElementById("areavals");
+          var areainfo = [];
+          areainfo.push(['Fecha', 'Total', 'Neto']);
+          <ui:repeat value="#{venta.graficador()}" var="resultado" >
+          areainfo.push(['#{resultado.fecha}', #{resultado.total}, #{resultado.neto}]);
+          </ui:repeat>
         var data = google.visualization.arrayToDataTable([
           ['Fecha', 'Total', 'Neto'],
           ['2013',  1000,      400],
@@ -18,25 +24,27 @@
           ['2015',  660,       1120],
           ['2016',  1030,      540]
         ]);
+        
+        var data2 = google.visualization.arrayToDataTable(areainfo);
 
         var options = {
-          title: 'Actividad',
+          title: 'Actividad\nLas ventas #{venta.subtitle()}',
           hAxis: {title: 'Fecha',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
+          vAxis: {title: 'Ventas', minValue: 0}
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
+        chart.draw(data2, options);
         document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Version PNG</a>';
       }      
     </script>
   </head>
 
   <body>
-    <div id='png'></div>
+      <div id='png'></div> &ensp;&ensp;<a href="index.xhtml">Regresar</a>
     <br/>
     <!--Div that will hold the pie chart-->
-    <div id="chart_div" style="width: 1250px; height: 700px;"></div>
-    
+    <div id="chart_div" style="width: 1400px; height: 750px;margin-left:-70px"></div>
+     
   </body>
 </html>
